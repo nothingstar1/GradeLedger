@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Class" />
-        <activity android:name=".EditClass"></activity>
+        <activity android:name=".EditClass" />
+        <activity android:name=".ActivityGroup"></activity>
     </application>
 
 </manifest>
