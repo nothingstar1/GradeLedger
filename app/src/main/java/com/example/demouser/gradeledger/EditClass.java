@@ -66,11 +66,13 @@ public class EditClass extends AppCompatActivity {
                 container.addView(groupInput);
             }
         });
+
+        DataManager.reportSavedCourse();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
 
         Course current = DataManager.getCurrentCourse();
         List<AssignmentGroup> groups = current.getBreakdown();
@@ -82,7 +84,6 @@ public class EditClass extends AppCompatActivity {
             if(weight.getText().toString().length() > 0)
                 g.setWeight(Integer.parseInt(weight.getText().toString()));
         }
-        DataManager.reportSavedCourse();
     }
 
 

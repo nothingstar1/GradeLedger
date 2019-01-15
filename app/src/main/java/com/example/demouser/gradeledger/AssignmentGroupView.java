@@ -20,7 +20,7 @@ public class AssignmentGroupView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
-        final Intent newAssignment = new Intent(this, editAssignment.class);
+        final Intent newAssignment = new Intent(this, singleAssignment.class);
 
         FloatingActionButton button = findViewById(R.id.addAssignmentButton);
         button.setOnClickListener(new View.OnClickListener() {

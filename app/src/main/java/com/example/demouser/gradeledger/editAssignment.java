@@ -28,18 +28,19 @@ public class editAssignment extends AppCompatActivity {
         detail = findViewById(R.id.assigDetail);
 
         name.setText(currentAssignment.getName(), TextView.BufferType.EDITABLE);
-        point1.setText((int)currentAssignment.getGradePoints(), TextView.BufferType.EDITABLE);
-        point2.setText((int)currentAssignment.getGradePointsTotal(), TextView.BufferType.EDITABLE);
-        percent.setText((int) currentAssignment.getGrade(), TextView.BufferType.EDITABLE);
-        date.setText(currentAssignment.getDueDate(), TextView.BufferType.EDITABLE);
+        point1.setText(""+currentAssignment.getGradePoints(), TextView.BufferType.EDITABLE);
+        point2.setText(""+currentAssignment.getGradePointsTotal(), TextView.BufferType.EDITABLE);
+        percent.setText(""+ currentAssignment.getGrade(), TextView.BufferType.EDITABLE);
+        date.setText(""+currentAssignment.getDueDate(), TextView.BufferType.EDITABLE);
         detail.setText(currentAssignment.getDetails(), TextView.BufferType.EDITABLE);
+        DataManager.reportSavedAssignment();
     }
 
     /**
      * When the user presses the back button, record all the data from the editText boxes.
      */
-    protected void onDestroy(){
-        super.onDestroy();
+    protected void onStop(){
+        super.onStop();
 
         currentAssignment.setName(name.getText().toString());
         currentAssignment.setGradePoints(Double.parseDouble(point1.getText().toString()), Double.parseDouble(point2.getText().toString()));
