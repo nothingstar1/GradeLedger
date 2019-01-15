@@ -19,6 +19,8 @@
         <activity android:name=".Class" />
         <activity android:name=".EditClass" />
         <activity android:name=".ActivityGroup"></activity>
+        <activity android:name=".singleAssignment" />
+        <activity android:name=".editAssignment"></activity>
     </application>
 
 </manifest>
