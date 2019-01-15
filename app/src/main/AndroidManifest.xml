@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".singleAssignment"></activity>
+        <activity android:name=".singleAssignment" />
+        <activity android:name=".editAssignment"></activity>
     </application>
 
 </manifest>
