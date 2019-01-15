@@ -9,5 +9,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // read data from XML file and create entire model hierarchy
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // save entire model to XML file
     }
 }

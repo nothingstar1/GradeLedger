@@ -33,4 +33,10 @@ public class Class {
     public void deleteAssignmentGroup(AssignmentGroup group) {
         breakdown.remove(group);
     }
+
+    public double getGrade() {
+        // calc grade from assignments
+        // either points or percent based
+        return 0;
+    }
 }
