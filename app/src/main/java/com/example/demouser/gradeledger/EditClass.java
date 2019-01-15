@@ -14,14 +14,18 @@ import com.example.demouser.gradeledger.Model.Course;
 
 import java.util.LinkedList;
 import java.util.List;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.demouser.gradeledger.Model.Assignment;
 
 public class EditClass extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_class);
-
         int idMaker = 0;
 
         final LinearLayout container = findViewById(R.id.GroupContainer);
@@ -80,4 +84,6 @@ public class EditClass extends AppCompatActivity {
         }
         DataManager.reportSavedCourse();
     }
+
+
 }
