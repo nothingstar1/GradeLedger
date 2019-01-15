@@ -3,12 +3,12 @@ package com.example.demouser.gradeledger.Model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Class {
+public class Course {
 
     private String name;
     List<AssignmentGroup> breakdown;
 
-    public Class() {
+    public Course() {
         breakdown = new LinkedList<>();
     }
 
@@ -16,6 +16,10 @@ public class Class {
         AssignmentGroup newGroup = new AssignmentGroup(name, weight);
         breakdown.add(newGroup);
         return newGroup;
+    }
+
+    public void addGroup(AssignmentGroup group) {
+        breakdown.add(group) ;
     }
 
     public void setName(String name) {

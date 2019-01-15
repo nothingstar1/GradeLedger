@@ -63,6 +63,12 @@
                     android:inputType="textPersonName"
                     android:text="Name" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/GroupContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 

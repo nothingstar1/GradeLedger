@@ -2,30 +2,29 @@ package com.example.demouser.gradeledger;
 
 import com.example.demouser.gradeledger.Model.Assignment;
 import com.example.demouser.gradeledger.Model.AssignmentGroup;
-import com.example.demouser.gradeledger.Model.Class;
+import com.example.demouser.gradeledger.Model.Course;
 
-import org.w3c.dom.Document;
-
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 public class DataManager {
 
-    private static List<Class> classes;
+    private static List<Course> courses;
 
-    private static Class currentClass;
+    private static Course currentCourse;
 
     private static AssignmentGroup currentAssignmentGroup;
 
     private static Assignment currentAssignment;
 
+    private static boolean isNewAssignment;
+    private static boolean isNewClass;
+
     public static void loadModel() {
+        isNewAssignment = false;
+        isNewClass = false;
         // if there is no file, start empty
-        classes = new LinkedList<>();
+        courses = new LinkedList<>();
         // Read XML and create data model
 //        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 //        DocumentBuilder db = dbf.newDocumentBuilder();
@@ -41,12 +40,12 @@ public class DataManager {
         }
     }
 
-    public static List<Class> getClasses() {
-        return classes;
+    public static List<Course> getCourses() {
+        return courses;
     }
 
-    public static Class getCurrentClass() {
-        return currentClass;
+    public static Course getCurrentCourse() {
+        return currentCourse;
     }
 
     public static AssignmentGroup getCurrentAssignmentGroup() {
@@ -57,15 +56,35 @@ public class DataManager {
         return currentAssignment;
     }
 
-    public static void reportClick(Class touchedClass) {
-        currentClass = touchedClass;
+    public static void reportClick(Course touchedCourse) {
+        currentCourse = touchedCourse;
+        isNewClass = false;
     }
 
     public static void reportClick(Assignment touchedAssignment) {
         currentAssignment = touchedAssignment;
+        isNewAssignment = false;
     }
 
     public static void reportClick(AssignmentGroup touchedGroup) {
         currentAssignmentGroup = touchedGroup;
     }
+
+    public static void reportSavedCourse() { isNewClass = false; }
+    public static void reportSavedAssignment() { isNewAssignment = false; }
+
+    public static void newClass() {
+        currentCourse = new Course();
+        courses.add(currentCourse);
+        isNewClass = true;
+    }
+
+    public static void newAssignment() {
+        currentAssignment = new Assignment();
+        currentAssignmentGroup.addAssignment(currentAssignment);
+        isNewAssignment = true;
+    }
+
+    public static boolean isNewClass() { return isNewClass; }
+    public static boolean isIsNewAssignment() { return isNewAssignment; }
 }
