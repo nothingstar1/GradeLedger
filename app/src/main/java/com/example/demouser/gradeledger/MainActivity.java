@@ -5,6 +5,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,6 +14,8 @@ import com.example.demouser.gradeledger.Model.Course;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static boolean loaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         // read data from XML file and create entire model hierarchy
         // or start an empty model
-        DataManager.loadModel();
+        if(!loaded) {
+            DataManager.loadModel();
+            loaded = true;
+        }
     }
 
     @Override

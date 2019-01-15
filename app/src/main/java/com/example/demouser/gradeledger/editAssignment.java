@@ -39,8 +39,8 @@ public class editAssignment extends AppCompatActivity {
     /**
      * When the user presses the back button, record all the data from the editText boxes.
      */
-    protected void onStop(){
-        super.onStop();
+    protected void onPause(){
+        super.onPause();
 
         currentAssignment.setName(name.getText().toString());
         currentAssignment.setGradePoints(Double.parseDouble(point1.getText().toString()), Double.parseDouble(point2.getText().toString()));
