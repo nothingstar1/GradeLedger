@@ -54,4 +54,6 @@ public class Assignment {
     public double getGradePointsTotal() {
         return gradePointsTotal;
     }
+
+    public String getDetails() { return details; }
 }

@@ -16,11 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Class" />
-        <activity android:name=".EditClass" />
-        <activity android:name=".ActivityGroup"></activity>
-        <activity android:name=".singleAssignment" />
-        <activity android:name=".editAssignment"></activity>
+        <activity android:name=".ClassView" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".EditClass" android:parentActivityName=".ClassView"/>
+        <activity android:name=".AssignmentGroup" android:parentActivityName=".ClassView"></activity>
+        <activity android:name=".singleAssignment" android:parentActivityName=".AssignmentGroup"/>
+        <activity android:name=".editAssignment" android:parentActivityName=".singleAssignment"></activity>
     </application>
 
 </manifest>
