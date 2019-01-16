@@ -1,8 +1,12 @@
 package com.example.demouser.gradeledger;
 
 import android.content.Context;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -23,7 +27,7 @@ import android.widget.TextView;
 
 import com.example.demouser.gradeledger.Model.Assignment;
 
-public class EditClass extends AppCompatActivity {
+public class EditClass extends AppCompatActivity implements DeleteConfirmation.OnFragmentInteractionListener {
 
 
     @Override
@@ -116,11 +120,20 @@ public class EditClass extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteCourse();
+                attemptDeleteCourse();
             }
         });
 
         DataManager.reportSavedCourse();
+    }
+
+    protected void attemptDeleteCourse() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = DeleteConfirmation.newInstance();
+        fragmentTransaction.add(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+
     }
 
     protected void deleteCourse() {
@@ -170,4 +183,8 @@ public class EditClass extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
