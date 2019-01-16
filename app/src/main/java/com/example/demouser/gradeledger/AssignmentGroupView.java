@@ -36,6 +36,7 @@ public class AssignmentGroupView extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         LinearLayout container = findViewById(R.id.AssignmentContainer);
+        container.removeAllViews();
 
         AssignmentGroup currentGroup = DataManager.getCurrentAssignmentGroup();
 
