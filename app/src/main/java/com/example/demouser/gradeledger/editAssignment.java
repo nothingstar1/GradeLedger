@@ -2,10 +2,15 @@ package com.example.demouser.gradeledger;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.demouser.gradeledger.Model.Assignment;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class editAssignment extends AppCompatActivity {
 
@@ -23,15 +28,14 @@ public class editAssignment extends AppCompatActivity {
         name = findViewById(R.id.assigName);
         point1 = findViewById(R.id.gradePoint1);
         point2 = findViewById(R.id.gradePoint2);
-        percent = findViewById(R.id.gradePercent);
         date = findViewById(R.id.assigDate);
         detail = findViewById(R.id.assigDetail);
 
         name.setText(currentAssignment.getName(), TextView.BufferType.EDITABLE);
         point1.setText(""+currentAssignment.getGradePoints(), TextView.BufferType.EDITABLE);
         point2.setText(""+currentAssignment.getGradePointsTotal(), TextView.BufferType.EDITABLE);
-        percent.setText(""+ currentAssignment.getGrade(), TextView.BufferType.EDITABLE);
         date.setText(""+currentAssignment.getDueDate(), TextView.BufferType.EDITABLE);
+
         detail.setText(currentAssignment.getDetails(), TextView.BufferType.EDITABLE);
         DataManager.reportSavedAssignment();
     }
@@ -44,8 +48,7 @@ public class editAssignment extends AppCompatActivity {
 
         currentAssignment.setName(name.getText().toString());
         currentAssignment.setGradePoints(Double.parseDouble(point1.getText().toString()), Double.parseDouble(point2.getText().toString()));
-        currentAssignment.setGrade(Double.parseDouble(percent.getText().toString()));
-        currentAssignment.setdueDate(Integer.parseInt(date.getText().toString()));
+        currentAssignment.setdueDate(date.getText().toString());
         currentAssignment.setDetails(detail.getText().toString());
     }
 }
