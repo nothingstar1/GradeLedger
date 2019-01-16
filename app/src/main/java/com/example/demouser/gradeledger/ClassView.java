@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.demouser.gradeledger.Model.AssignmentGroup;
 import com.example.demouser.gradeledger.Model.Course;
@@ -15,8 +16,6 @@ import com.example.demouser.gradeledger.Model.Course;
 import java.util.List;
 
 public class ClassView extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +60,10 @@ public class ClassView extends AppCompatActivity {
                 container.addView(button);
             }
         }
+
+        TextView className = findViewById(R.id.ClassName);
+        TextView grade = findViewById(R.id.gradeView);
+        className.setText( currentCourse.getName() );
+        grade.setText("Current Grade: " + Double.toString(currentCourse.getGrade()));
     }
 }
