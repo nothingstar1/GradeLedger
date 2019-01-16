@@ -1,8 +1,11 @@
 package com.example.demouser.gradeledger;
 
+import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -38,6 +41,19 @@ public class editAssignment extends AppCompatActivity {
 
         detail.setText(currentAssignment.getDetails(), TextView.BufferType.EDITABLE);
         DataManager.reportSavedAssignment();
+
+        FloatingActionButton deleteButton = findViewById(R.id.deleteAssignment);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAssignment();
+            }
+        });
+    }
+
+    protected void deleteAssignment() {
+        DataManager.deleteCurrentAssignment();
+        finish();
     }
 
     /**

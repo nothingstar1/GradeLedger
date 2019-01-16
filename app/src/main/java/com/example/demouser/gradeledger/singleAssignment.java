@@ -43,8 +43,11 @@ public class singleAssignment extends AppCompatActivity {
 
         final Intent editAssignment = new Intent(this, editAssignment.class);
         Assignment currentAssignment = DataManager.getCurrentAssignment();
-        if(DataManager.isIsNewAssignment()) {
+        if(DataManager.isIsNewAssignment())
             startActivity(editAssignment);
+        else if(currentAssignment == null) {
+            finish();
+            return;
         }
         else {
             name.setText(currentAssignment.getName());

@@ -87,4 +87,16 @@ public class DataManager {
 
     public static boolean isNewClass() { return isNewClass; }
     public static boolean isIsNewAssignment() { return isNewAssignment; }
+
+    public static void deleteCurrentClass() {
+        courses.remove(currentCourse);
+        currentCourse = null;
+        currentAssignment = null;
+        currentAssignmentGroup = null;
+    }
+
+    public static void deleteCurrentAssignment() {
+        currentAssignmentGroup.deleteAssignment(currentAssignment);
+        currentAssignment = null;
+    }
 }
