@@ -41,6 +41,15 @@ public class Course {
     public double getGrade() {
         // calc grade from assignments
         // either points or percent based
-        return 0;
+        double totalPoints = 0, earnedPoints = 0;
+        for(AssignmentGroup g: breakdown) {
+            totalPoints += g.getWeight();
+            if(g.getGrade() != -1) {
+                earnedPoints += (g.getGrade() / 100 * g.getWeight());
+            }
+            else
+                earnedPoints += g.getWeight();
+        }
+        return earnedPoints/totalPoints;
     }
 }

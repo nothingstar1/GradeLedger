@@ -47,7 +47,7 @@ public class ClassView extends AppCompatActivity {
             final Intent groupView = new Intent(this, AssignmentGroupView.class);
             LinearLayout container = findViewById(R.id.GroupContainer);
             List<AssignmentGroup> breakdown = currentCourse.getBreakdown();
-            for(AssignmentGroup b: breakdown) {
+            for(AssignmentGroup b: breakdown) { // for all assignment groups
                 Button button = new Button(this);
                 button.setText(b.getName());
                 final AssignmentGroup c = b;

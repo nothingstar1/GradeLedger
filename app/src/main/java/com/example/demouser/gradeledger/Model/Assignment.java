@@ -24,7 +24,7 @@ public class Assignment {
     public void setGradePoints(double grade, double total) {
         gradePoints = grade;
         gradePointsTotal = total;
-        grade = grade/total;
+        grade = grade/total * 100;
     }
 
     public void setDetails(String details) {

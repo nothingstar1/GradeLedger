@@ -59,4 +59,14 @@ public class AssignmentGroup {
     public int getID() {
         return id;
     }
+
+    public double getGrade() {
+        double total = 0;
+        for(Assignment a: assignmentList) {
+            total += a.getGrade();
+        }
+        if(assignmentList.size() <= 0)
+            return -1;
+        return total/assignmentList.size();
+    }
 }
