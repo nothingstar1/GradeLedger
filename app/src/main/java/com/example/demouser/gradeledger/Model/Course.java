@@ -54,6 +54,6 @@ public class Course {
                 earnedPoints += g.getWeight();
         }
         Log.i("Jelly", "Total Points: " + totalPoints + " Earned Points: " + earnedPoints);
-        return earnedPoints/totalPoints;
+        return earnedPoints/totalPoints * 100;
     }
 }
