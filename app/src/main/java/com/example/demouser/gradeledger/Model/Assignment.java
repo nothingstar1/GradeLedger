@@ -1,5 +1,11 @@
 package com.example.demouser.gradeledger.Model;
 
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Assignment {
 
     private String name;
@@ -7,7 +13,7 @@ public class Assignment {
     private double gradePoints;
     private double gradePointsTotal;
     private String details;
-    private int dueDate;
+    private String dueDate = "dd-MM-YYYY";
 
     public Assignment() {
         name = "New Assignment";
@@ -31,7 +37,7 @@ public class Assignment {
         this.details = details;
     }
 
-    public void setdueDate(int date) {
+    public void setdueDate(String date) {
         this.dueDate = date;
     }
 
@@ -43,7 +49,7 @@ public class Assignment {
         return grade;
     }
 
-    public int getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 

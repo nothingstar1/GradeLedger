@@ -24,9 +24,9 @@ public class singleAssignment extends AppCompatActivity {
         setContentView(R.layout.activity_single_assignment);
 
         name = findViewById(R.id.assigName);
-//        date = findViewById(R.id.dueDate);
-//        grade = findViewById(R.id.grade);
-//        description = findViewById(R.id.assigDetails);
+        date = findViewById(R.id.dueDate);
+        grade = findViewById(R.id.grade);
+        description = findViewById(R.id.assigDetails);
         final Intent editAssignment = new Intent(this, editAssignment.class);
         FloatingActionButton button = findViewById(R.id.editAssignmentButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +48,9 @@ public class singleAssignment extends AppCompatActivity {
         }
         else {
             name.setText(currentAssignment.getName());
-//            date.setText(currentAssignment.getDueDate());
-//            description.setText(currentAssignment.getDetails());
-//            grade.setText("" + currentAssignment.getGrade());
+            date.setText(currentAssignment.getDueDate());
+            description.setText(currentAssignment.getDetails());
+            grade.setText("" + currentAssignment.getGrade());
         }
     }
 }
