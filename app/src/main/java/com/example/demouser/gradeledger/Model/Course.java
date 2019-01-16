@@ -24,6 +24,8 @@ public class Course {
         breakdown.add(group) ;
     }
 
+    public void removeGroup(AssignmentGroup group) { breakdown.remove(group); }
+
     public void setName(String name) {
         this.name = name;
     }

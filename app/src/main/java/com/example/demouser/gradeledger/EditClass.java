@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -35,7 +37,7 @@ public class EditClass extends AppCompatActivity {
         Course current = DataManager.getCurrentCourse();
         List<AssignmentGroup> groups = current.getBreakdown();
         for(AssignmentGroup g: groups) {
-            LinearLayout groupInput = new LinearLayout(this);
+            final LinearLayout groupInput = new LinearLayout(this);
             groupInput.setOrientation(LinearLayout.HORIZONTAL);
 
             EditText groupName = new EditText(this);
@@ -46,8 +48,26 @@ public class EditClass extends AppCompatActivity {
             weight.setId(g.getID()+1);
             weight.setText(""+g.getWeight(), TextView.BufferType.EDITABLE);
 
+            TextView percentLabel = new TextView(this);
+            percentLabel.setText("%");
+
+            Button button = new Button(this);
+            button.setText("x");
+            final AssignmentGroup a = g;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteAssignmentGroup(a);
+                    container.removeView(groupInput);
+                    DataManager.getCurrentCourse().removeGroup(a);
+                }
+            });
+
             groupInput.addView(groupName);
             groupInput.addView(weight);
+            groupInput.addView(percentLabel);
+            groupInput.addView(button);
+
             container.addView(groupInput);
         }
 
@@ -67,8 +87,26 @@ public class EditClass extends AppCompatActivity {
                 EditText weight = new EditText(context);
                 weight.setId(group.getID()+1);
 
+                TextView percentLabel = new TextView(context);
+                percentLabel.setText("%");
+
+                Button button = new Button(context);
+                button.setText("x");
+                final AssignmentGroup g = group;
+                final ViewGroup gI = groupInput;
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteAssignmentGroup(g);
+                        container.removeView(gI);
+                        DataManager.getCurrentCourse().removeGroup(g);
+                    }
+                });
+
                 groupInput.addView(groupName);
                 groupInput.addView(weight);
+                groupInput.addView(percentLabel);
+                groupInput.addView(button);
 
                 container.addView(groupInput);
             }
@@ -88,6 +126,10 @@ public class EditClass extends AppCompatActivity {
     protected void deleteCourse() {
         DataManager.deleteCurrentClass();
         finish();
+    }
+
+    protected void deleteAssignmentGroup(AssignmentGroup group) {
+        DataManager.getCurrentCourse().deleteAssignmentGroup(group);
     }
 
     @Override
