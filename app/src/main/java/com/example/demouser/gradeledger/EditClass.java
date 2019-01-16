@@ -78,13 +78,28 @@ public class EditClass extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton deleteButton = findViewById(R.id.DeleteClassButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteCourse();
+            }
+        });
+
         DataManager.reportSavedCourse();
+    }
+
+    protected void deleteCourse() {
+        DataManager.deleteCurrentClass();
+        finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Course current = DataManager.getCurrentCourse();
+        if(current == null)
+            return;
         // set name
         EditText className = findViewById(R.id.ClassName);
         current.setName(className.getText().toString());
@@ -100,8 +115,8 @@ public class EditClass extends AppCompatActivity {
             //weight
             EditText weight = findViewById(g.getID()+1);
             if(weight.getText().toString().length() > 0) {
-                g.setWeight(Integer.parseInt(weight.getText().toString()));
-                totalWeight -= Integer.parseInt(weight.getText().toString());
+                g.setWeight(Double.parseDouble(weight.getText().toString()));
+                totalWeight -= Double.parseDouble(weight.getText().toString());
             }
             else
                 unweighted.add(g); // distribute unused weight later

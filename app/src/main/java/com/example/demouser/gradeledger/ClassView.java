@@ -40,9 +40,14 @@ public class ClassView extends AppCompatActivity {
         final Intent intent = new Intent(this, EditClass.class);
 
         Course currentCourse = DataManager.getCurrentCourse();
-        if(DataManager.isNewClass()) {
+
+        if(DataManager.isNewClass())
             startActivity(intent);
-        } else {
+        else if(currentCourse == null) {
+            finish();
+            return;
+        }
+        else {
             final Intent groupView = new Intent(this, AssignmentGroupView.class);
             LinearLayout container = findViewById(R.id.GroupContainer);
             List<AssignmentGroup> breakdown = currentCourse.getBreakdown();
