@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import com.example.demouser.gradeledger.Model.Class;
+import com.example.demouser.gradeledger.Model.Course;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static boolean loaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,17 +23,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FloatingActionButton addClass = findViewById(R.id.AddClassButton);
-        final Intent EDIT_CLASS = new Intent(this, ClassView.class);
+        final Intent CLASS = new Intent(this, ClassView.class);
         addClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(EDIT_CLASS);
+                DataManager.newClass();
+                startActivity(CLASS);
             }
         });
 
         // read data from XML file and create entire model hierarchy
         // or start an empty model
-        DataManager.loadModel();
+        if(!loaded) {
+            DataManager.loadModel();
+            loaded = true;
+        }
     }
 
     @Override
@@ -41,16 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout container = findViewById(R.id.ClassContainer);
         container.removeAllViews();
-        List<Class> classes = DataManager.getClasses();
-        for(Class c: classes) {
+        List<Course> courses = DataManager.getCourses();
+        for(Course c: courses) {
             // make a button
             Button button = new Button(this);
             button.setText(c.getName());
-            final Class specialClass = c;
+            final Course specialCourse = c;
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DataManager.reportClick(specialClass);
+                    DataManager.reportClick(specialCourse);
                     startActivity(intent);
                 }
             });

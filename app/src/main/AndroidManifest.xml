@@ -18,8 +18,8 @@
         </activity>
         <activity android:name=".ClassView" android:parentActivityName=".MainActivity"/>
         <activity android:name=".EditClass" android:parentActivityName=".ClassView"/>
-        <activity android:name=".AssignmentGroup" android:parentActivityName=".ClassView"></activity>
-        <activity android:name=".singleAssignment" android:parentActivityName=".AssignmentGroup"/>
+        <activity android:name=".AssignmentGroupView" android:parentActivityName=".ClassView"></activity>
+        <activity android:name=".singleAssignment" android:parentActivityName=".AssignmentGroupView"/>
         <activity android:name=".editAssignment" android:parentActivityName=".singleAssignment"></activity>
     </application>
 
