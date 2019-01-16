@@ -1,13 +1,22 @@
 package com.example.demouser.gradeledger.Model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Entity(tableName = "course_table")
 public class Course {
 
+    @PrimaryKey(autoGenerate = true)
+    private int node_id;
+
+    @ColumnInfo
     private String name;
+
     List<AssignmentGroup> breakdown;
 
     public Course() {

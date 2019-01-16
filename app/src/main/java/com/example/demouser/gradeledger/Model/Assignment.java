@@ -1,18 +1,38 @@
 package com.example.demouser.gradeledger.Model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "assignment_table", foreignKeys = @ForeignKey(entity = AssignmentGroup.class, parentColumns = "node_id",
+childColumns = "group_id", onDelete=CASCADE))
 public class Assignment {
 
+    @PrimaryKey(autoGenerate = true)
+    private int node_id;
+
+    @ColumnInfo
+    private int group_id;
+
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private double grade;
+    @ColumnInfo
     private double gradePoints;
+    @ColumnInfo
     private double gradePointsTotal;
+    @ColumnInfo
     private String details;
+    @ColumnInfo
     private String dueDate = "dd-MM-YYYY";
 
     public Assignment() {

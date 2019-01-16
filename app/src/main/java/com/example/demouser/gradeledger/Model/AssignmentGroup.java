@@ -1,14 +1,31 @@
 package com.example.demouser.gradeledger.Model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.LinkedList;
 import java.util.List;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "assignment_group", foreignKeys = @ForeignKey(entity = Course.class, parentColumns = "node_id",
+        childColumns = "course_id", onDelete = CASCADE))
 public class AssignmentGroup {
 
     private static int idMaker = 0;
     private int id; // Each group gets two ids -- id is for name field and id+1 for weight
 
+    @PrimaryKey(autoGenerate = true)
+    private int node_id;
+
+    @ColumnInfo
+    private int course_id;
+
+    @ColumnInfo
     String name;
+    @ColumnInfo
     double weight;
     List<Assignment> assignmentList;
 
