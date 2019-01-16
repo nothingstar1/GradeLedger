@@ -75,6 +75,8 @@ public class EditClass extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Course current = DataManager.getCurrentCourse();
+        EditText className = findViewById(R.id.ClassName);
+        current.setName(className.getText().toString());
         List<AssignmentGroup> groups = current.getBreakdown();
         for(int i = 0; i < groups.size(); i++) {
             AssignmentGroup g = groups.get(i);
