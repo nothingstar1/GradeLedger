@@ -5,6 +5,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -82,9 +83,12 @@ public class EditClass extends AppCompatActivity {
                 groupInput.setOrientation(LinearLayout.HORIZONTAL);
 
                 EditText groupName = new EditText(context);
+                groupName.setText("Name of the Assignment");
                 groupName.setId(group.getID());
 
                 EditText weight = new EditText(context);
+                weight.setText("0");
+                weight.setInputType(InputType.TYPE_CLASS_NUMBER);
                 weight.setId(group.getID()+1);
 
                 TextView percentLabel = new TextView(context);
