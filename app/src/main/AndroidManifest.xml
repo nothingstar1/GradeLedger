@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClassView" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".EditClass" android:parentActivityName=".ClassView"/>
+        <activity android:name=".EditClass" android:parentActivityName=".ClassView" android:windowSoftInputMode="adjustPan|adjustResize"/>
         <activity android:name=".AssignmentGroupView" android:parentActivityName=".ClassView"></activity>
         <activity android:name=".singleAssignment" android:parentActivityName=".AssignmentGroupView"/>
         <activity android:name=".editAssignment" android:parentActivityName=".singleAssignment"></activity>
