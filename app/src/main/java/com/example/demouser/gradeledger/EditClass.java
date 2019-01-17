@@ -71,6 +71,8 @@ public class EditClass extends AppCompatActivity {
                 weight.setInputType(InputType.TYPE_CLASS_NUMBER);
                 weight.setId(group.getID()+1);
 
+
+
                 groupInput.addView(groupName);
                 groupInput.addView(weight);
 
