@@ -46,7 +46,7 @@ public class EditClass extends AppCompatActivity {
             groupName.setText(g.getName(), TextView.BufferType.EDITABLE);
 
             EditText weight = new EditText(this);
-            weight.setId(g.getID()+1);
+            weight.setId(g.getID()*-1);
             weight.setText(""+g.getWeight(), TextView.BufferType.EDITABLE);
 
             TextView percentLabel = new TextView(this);
@@ -89,7 +89,7 @@ public class EditClass extends AppCompatActivity {
                 EditText weight = new EditText(context);
                 weight.setText("0");
                 weight.setInputType(InputType.TYPE_CLASS_NUMBER);
-                weight.setId(group.getID()+1);
+                weight.setId(group.getID()*-1);
 
                 TextView percentLabel = new TextView(context);
                 percentLabel.setText("%");
@@ -155,7 +155,7 @@ public class EditClass extends AppCompatActivity {
             EditText name = findViewById(g.getID());
             g.setName(name.getText().toString());
             //weight
-            EditText weight = findViewById(g.getID()+1);
+            EditText weight = findViewById(g.getID()*-1);
             if(weight.getText().toString().length() > 0) {
                 g.setWeight(Double.parseDouble(weight.getText().toString()));
                 totalWeight -= Double.parseDouble(weight.getText().toString());

@@ -1,15 +1,21 @@
 package com.example.demouser.gradeledger;
 
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.content.Context;
+
 import com.example.demouser.gradeledger.Model.Assignment;
 import com.example.demouser.gradeledger.Model.AssignmentGroup;
 import com.example.demouser.gradeledger.Model.Course;
+import com.example.demouser.gradeledger.Model.GradeDao;
+import com.example.demouser.gradeledger.Model.GradeRepository;
+import com.example.demouser.gradeledger.Model.GradeRoomDatabase;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class DataManager {
 
-    private static List<Course> courses;
 
     private static Course currentCourse;
 
@@ -20,28 +26,22 @@ public class DataManager {
     private static boolean isNewAssignment;
     private static boolean isNewClass;
 
-    public static void loadModel() {
+    private static GradeRepository repository;
+
+    public static void loadModel(Application application) {
         isNewAssignment = false;
         isNewClass = false;
-        // if there is no file, start empty
-        courses = new LinkedList<>();
-        // Read XML and create data model
-//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder db = dbf.newDocumentBuilder();
-//        Document document = db.parse(new File(""));
+
+        repository = new GradeRepository(application);
+        repository.deleteAll();
     }
 
     public static void saveModel() {
-        // save data model to XML file
-        try {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    public static List<Course> getCourses() {
-        return courses;
+    public static LiveData<List<Course>> getCourses() {
+        return repository.getAllCourses();
     }
 
     public static Course getCurrentCourse() {
@@ -75,8 +75,8 @@ public class DataManager {
 
     public static void newClass() {
         currentCourse = new Course();
-        courses.add(currentCourse);
         isNewClass = true;
+        repository.insert(currentCourse);
     }
 
     public static void newAssignment() {
@@ -89,10 +89,10 @@ public class DataManager {
     public static boolean isIsNewAssignment() { return isNewAssignment; }
 
     public static void deleteCurrentClass() {
-        courses.remove(currentCourse);
         currentCourse = null;
         currentAssignment = null;
         currentAssignmentGroup = null;
+        // delete course from repository
     }
 
     public static void deleteCurrentAssignment() {

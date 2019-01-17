@@ -53,12 +53,20 @@ public class Assignment {
         this.grade = grade/total * 100;
     }
 
+    public void setGradePoints(double grade) {
+        gradePoints = grade;
+    }
+
+    public void setGradePointsTotal(double gradeTotal) {
+        gradePointsTotal = gradeTotal;
+    }
+
     public void setDetails(String details) {
         this.details = details;
     }
 
-    public void setdueDate(String date) {
-        this.dueDate = date;
+    public void setDueDate(String date) {
+        dueDate = date;
     }
 
     public String getName() {
@@ -82,4 +90,20 @@ public class Assignment {
     }
 
     public String getDetails() { return details; }
+
+    public void setGroup_id(int id) {
+        group_id = id;
+    }
+
+    public int getGroup_id() {
+        return group_id;
+    }
+
+    public int getNode_id() {
+        return node_id;
+    }
+
+    protected void setNode_id(int id) {
+        node_id = id;
+    }
 }

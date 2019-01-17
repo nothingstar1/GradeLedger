@@ -64,7 +64,7 @@ public class editAssignment extends AppCompatActivity {
 
         currentAssignment.setName(name.getText().toString());
         currentAssignment.setGradePoints(Double.parseDouble(point1.getText().toString()), Double.parseDouble(point2.getText().toString()));
-        currentAssignment.setdueDate(date.getText().toString());
+        currentAssignment.setDueDate(date.getText().toString());
         currentAssignment.setDetails(detail.getText().toString());
     }
 }

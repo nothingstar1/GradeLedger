@@ -8,44 +8,28 @@ import java.util.List;
 
 public class GradeRepository {
 
-    private CourseDao mcourseDao;
-    private AssignmentGroupDao massignmentGroupDao;
-    private AssignmentDao massignmentDao;
+    private GradeDao mGradeDao;
     private LiveData<List<Course>> mAllCourses;
-    private LiveData<List<AssignmentGroup>> mAllAssignmentGroups;
-    private LiveData<List<Assignment>> mAllAssignments;
 
-    GradeRepository(Application application) {
+    public GradeRepository(Application application) {
         GradeRoomDatabase db = GradeRoomDatabase.getDatabase(application);
-        mcourseDao = db.courseDao();
-        massignmentDao = db.assignmentDao();
-        massignmentGroupDao = db.assignmentGroupDao();
-        mAllCourses = mcourseDao.getAllCourses();
-        mAllAssignmentGroups = massignmentGroupDao.getAllAssignmentGroups();
-        mAllAssignments = massignmentDao.getAllAssignments();
+        mGradeDao = db.gradeDao();
+        mAllCourses = mGradeDao.getAllCourses();
     }
 
-    LiveData<List<Course>> getAllCourses() {
+    public LiveData<List<Course>> getAllCourses() {
         return mAllCourses;
     }
 
-    LiveData<List<Assignment>> getAllAssignments() {
-        return mAllAssignments;
+    public void insert(Course course) {
+        new insertAsyncTask(mGradeDao).execute(course);
     }
 
-    LiveData<List<AssignmentGroup>> getAllAssignmentGroups() {
-        return mAllAssignmentGroups;
-    }
+    private static class insertAsyncTask extends AsyncTask<Course, Void, Void> {
 
-    public void insertCourse (Course course) {
-        new insertAsyncTask1(mcourseDao).execute(course);
-    }
+        private GradeDao mAsyncTaskDao;
 
-    private static class insertAsyncTask1 extends AsyncTask<Course, Void, Void> {
-
-        private CourseDao mAsyncTaskDao;
-
-        insertAsyncTask1(CourseDao dao) {
+        insertAsyncTask(GradeDao dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -56,21 +40,21 @@ public class GradeRepository {
         }
     }
 
-    public void insertAssignment (Assignment assignment) {
-        new insertAsyncTask2(massignmentDao).execute(assignment);
+    public void deleteAll() {
+        new deleteAllAsyncTask(mGradeDao).execute();
     }
 
-    private static class insertAsyncTask2 extends AsyncTask<Assignment, Void, Void> {
+    private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private AssignmentDao mAsyncTaskDao;
+        private GradeDao mAsyncTaskDao;
 
-        insertAsyncTask2(AssignmentDao dao) {
+        deleteAllAsyncTask(GradeDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Assignment... params) {
-            mAsyncTaskDao.insert(params[0]);
+        protected Void doInBackground(final Void... params) {
+            mAsyncTaskDao.nukeTable();
             return null;
         }
     }

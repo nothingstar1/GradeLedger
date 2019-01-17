@@ -2,6 +2,7 @@ package com.example.demouser.gradeledger.Model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.util.Log;
 
@@ -17,10 +18,12 @@ public class Course {
     @ColumnInfo
     private String name;
 
-    List<AssignmentGroup> breakdown;
+    @Ignore
+    private List<AssignmentGroup> breakdown;
 
     public Course() {
         breakdown = new LinkedList<>();
+        name = "o";
     }
 
     public AssignmentGroup addGroup(String name, double weight) {
@@ -47,6 +50,8 @@ public class Course {
         return  breakdown;
     }
 
+    public void setBreakdown(List<AssignmentGroup> groups) { breakdown = groups; }
+
     public void deleteAssignmentGroup(AssignmentGroup group) {
         breakdown.remove(group);
     }
@@ -66,5 +71,20 @@ public class Course {
         }
         Log.i("Jelly", "Total Points: " + totalPoints + " Earned Points: " + earnedPoints);
         return earnedPoints/totalPoints * 100;
+    }
+
+    public int getNode_id() {
+        return node_id;
+    }
+
+    protected void setNode_id(int id) {
+        node_id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
